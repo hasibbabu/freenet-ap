@@ -32,7 +32,7 @@ class RfcommTransport {
             executor.execute {
                 try {
                     val input = socket.inputStream
-                    while (running && !socket.isClosed) {
+                    while (running) {
                         val frame = FrameCodec.readFrame(input) ?: break
                         onFrame(device.address, frame)
                     }
