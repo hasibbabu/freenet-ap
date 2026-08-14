@@ -24,7 +24,7 @@ class RfcommServer {
                         val socket = server?.accept() ?: break
                         executor.execute {
                             try {
-                                while (running && !socket.isClosed) {
+                                while (running) {
                                     val frame = FrameCodec.readFrame(socket.inputStream) ?: break
                                     onFrame(socket.remoteDevice.address, frame)
                                 }
